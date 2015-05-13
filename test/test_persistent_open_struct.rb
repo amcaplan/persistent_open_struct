@@ -125,4 +125,26 @@ class PersistentOpenStructTest < Minitest::Test
     e = assert_raises(ArgumentError) { os.send :foobarbaz=, true, true }
     assert_match(/#{__callee__}/, e.backtrace[0])
   end
+
+  def test_method_reuse
+    os = PersistentOpenStruct.new
+    refute_respond_to(os, :hello)
+    refute_respond_to(os, :hello=)
+    os.hello = 'world'
+    os2 = PersistentOpenStruct.new
+    assert_respond_to(os2, :hello)
+    assert_respond_to(os2, :hello=)
+  end
+
+  PersistentOpenStructClass1 = Class.new(PersistentOpenStruct)
+  PersistentOpenStructClass2 = Class.new(PersistentOpenStruct)
+
+  def test_method_segregation
+    os1a = PersistentOpenStructClass1.new
+    os1a.a_thing = 'value'
+    os1b = PersistentOpenStructClass1.new
+    assert_respond_to(os1b, :a_thing)
+    os2 = PersistentOpenStructClass2.new
+    refute_respond_to(os2, :a_thing)
+  end
 end
