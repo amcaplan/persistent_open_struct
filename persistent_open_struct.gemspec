@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = PersistentOpenStruct::VERSION
   spec.authors       = ["amcaplan"]
   spec.email         = ["ariel.caplan@vitals.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{A variant of OpenStruct that persists defined methods}
+  spec.description   = %q{Unlike OpenStruct, which defines singleton methods on an object, PersistentOpenStruct defines methods on the class.  This is useful when storing many hashes with the same keys as OpenStructs.}
+  spec.homepage      = "http://github.com/amcaplan/persistent_open_struct"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
