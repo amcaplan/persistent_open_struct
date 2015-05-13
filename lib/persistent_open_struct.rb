@@ -11,4 +11,8 @@ class PersistentOpenStruct < OpenStruct
     end
     name
   end
+
+  def delete_field(name)
+    @table.delete(name)
+  end
 end

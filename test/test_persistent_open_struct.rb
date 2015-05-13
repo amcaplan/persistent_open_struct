@@ -57,27 +57,17 @@ class PersistentOpenStructTest < Minitest::Test
   end
 
   def test_delete_field
-    bug = '[ruby-core:33010]'
     o = PersistentOpenStruct.new
-    refute_respond_to(o, :a)
-    refute_respond_to(o, :a=)
-    o.a = 'a'
-    assert_respond_to(o, :a)
-    assert_respond_to(o, :a=)
-    a = o.delete_field :a
-    refute_respond_to(o, :a, bug)
-    refute_respond_to(o, :a=, bug)
-    assert_equal(a, 'a')
-    s = Object.new
-    def s.to_sym
-      :foo
-    end
-    o[s] = true
-    assert_respond_to(o, :foo)
-    assert_respond_to(o, :foo=)
-    o.delete_field s
-    refute_respond_to(o, :foo)
-    refute_respond_to(o, :foo=)
+    refute_respond_to(o, :foobar)
+    refute_respond_to(o, :foobar=)
+    o.foobar = :baz
+    assert_equal(o.foobar, :baz)
+    assert_respond_to(o, :foobar)
+    assert_respond_to(o, :foobar=)
+    o.delete_field(:foobar)
+    assert_equal(nil, o.foobar)
+    assert_respond_to(o, :foobar)
+    assert_respond_to(o, :foobar=)
   end
 
   def test_setter
@@ -128,11 +118,11 @@ class PersistentOpenStructTest < Minitest::Test
 
   def test_method_missing
     os = PersistentOpenStruct.new
-    e = assert_raises(NoMethodError) { os.foo true }
-    assert_equal :foo, e.name
+    e = assert_raises(NoMethodError) { os.foobarbaz true }
+    assert_equal :foobarbaz, e.name
     assert_equal [true], e.args
     assert_match(/#{__callee__}/, e.backtrace[0])
-    e = assert_raises(ArgumentError) { os.send :foo=, true, true }
+    e = assert_raises(ArgumentError) { os.send :foobarbaz=, true, true }
     assert_match(/#{__callee__}/, e.backtrace[0])
   end
 end
