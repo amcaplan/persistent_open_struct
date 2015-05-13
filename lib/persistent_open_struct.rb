@@ -1,5 +1,7 @@
-require "persistent_open_struct/version"
+require 'ostruct'
 
-module PersistentOpenStruct
-  # Your code goes here...
+class PersistentOpenStruct < OpenStruct
+  VERSION = "0.0.1"
+
+  
 end
