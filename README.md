@@ -127,3 +127,6 @@ datum2.respond_to?(:foo) #=> true
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+Pull requests will not be considered without tests of whatever you seek to
+change, unless you are submitting a performance improvement.
