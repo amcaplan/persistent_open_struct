@@ -9,6 +9,7 @@ class PersistentOpenStruct < OpenStruct
     end
     name
   end
+  protected :new_ostruct_member
 
   def delete_field(name)
     @table.delete(name)
