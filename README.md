@@ -108,6 +108,7 @@ Or install it yourself as:
     $ gem install persistent_open_struct
 
 ## Usage
+Note: requires Ruby 2.1.0 or above.
 
 ``` ruby
 class MyDataStructure < PersistentOpenStruct
