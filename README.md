@@ -103,5 +103,6 @@ datum2.respond_to?(:foo) #=> true
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-Pull requests will not be considered without tests of whatever you seek to
-change, unless you are submitting a performance improvement.
+Changes to functionality require testing.  Performance improvements should
+include before/after benchmarks (or ideally just update the results in the
+Readme above).
