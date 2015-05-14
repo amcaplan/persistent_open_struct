@@ -5,10 +5,13 @@ Wishing OpenStruct wouldn't have to define a new singleton method on each
 individual object?  Here is your solution!
 
 PersistentOpenStruct defines methods on the class, so as long as you keep using
-the same keys, no new methods will be defined.  It obeys the entire interface
-of OpenStruct, so you can insert it into your code without problem!  (Unless
-you're using `OpenStruct#delete_field` for some reason; PersistentOpenStruct
-refuses to undefine the methods it defines.)
+the same keys, no new methods will be defined.  The class quickly learns the
+shape of your data, so you can use it with minimal overhead.  (Though of course
+it's still not as fast as doing the work of defining a full-fledged class.)
+
+It obeys the entire interface of OpenStruct, so you can insert it into your code
+without problem!  (Unless you're using `OpenStruct#delete_field` for some reason;
+PersistentOpenStruct refuses to undefine the methods it defines.)
 
 This gives a noticeable performance boost.  Here are the results of the benchmark
 found at
