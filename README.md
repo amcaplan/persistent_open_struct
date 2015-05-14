@@ -1,3 +1,6 @@
+[![Gem Version](https://badge.fury.io/rb/persistent_open_struct.svg)](http://badge.fury.io/rb/persistent_open_struct)
+![Travis badge](https://travis-ci.org/amcaplan/persistent_open_struct.svg?branch=master)
+
 # PersistentOpenStruct
 
 Are you inserting data in the same format into OpenStruct again and again?
