@@ -55,6 +55,8 @@ Benchmark.ips do |x|
   x.report('RegularClass') do
     rgc.foo = :bar
   end
+
+  x.compare!
 end
 
 puts "\n\nAccess Benchmark\n\n"
@@ -80,4 +82,37 @@ Benchmark.ips do |x|
   x.report('RegularClass') do
     pos.foo
   end
+
+  x.compare!
+end
+
+puts "\n\nAll-Together benchmark\n\n"
+
+Benchmark.ips do |x|
+  input_hash = { foo: :bar }
+  x.report('OpenStruct') do
+    os = OpenStruct.new(input_hash)
+    os.foo = :bar
+    os.foo
+  end
+
+  x.report('PersistentOpenStruct') do
+    pos = PersistentOpenStruct.new(input_hash)
+    pos.foo = :bar
+    pos.foo
+  end
+
+  x.report('OpenFastStruct') do
+    ofs = OpenFastStruct.new(input_hash)
+    ofs.foo = :bar
+    ofs.foo
+  end
+
+  x.report('RegularClass') do
+    rgc = RegularClass.new(input_hash)
+    rgc.foo = :bar
+    rgc.foo
+  end
+
+  x.compare!
 end
