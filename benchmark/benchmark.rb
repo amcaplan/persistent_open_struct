@@ -30,6 +30,8 @@ Benchmark.ips do |x|
   x.report('RegularClass') do
     RegularClass.new(input_hash)
   end
+
+  x.compare!
 end
 
 puts "\n\nAssignment Benchmark\n\n"
