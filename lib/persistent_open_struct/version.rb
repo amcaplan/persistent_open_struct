@@ -1,5 +1,5 @@
 require 'ostruct'
 
-class PersistentOpenStruct < OpenStruct
-  VERSION = "0.0.2"
+class PersistentOpenStruct
+  VERSION = "0.0.3"
 end

@@ -119,12 +119,12 @@ class PersistentOpenStruct
   protected :table
 
   def ==(other)
-    return false unless other.kind_of?(OpenStruct)
+    return false unless other.class == self.class
     @table == other.table
   end
 
   def eql?(other)
-    return false unless other.kind_of?(OpenStruct)
+    return false unless other.class == self.class
     @table.eql?(other.table)
   end
 

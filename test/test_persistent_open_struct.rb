@@ -28,6 +28,17 @@ class PersistentOpenStructTest < Minitest::Test
     refute_equal(o1, o2)
   end
 
+  def test_equality_of_subclasses
+    pos_class = Class.new(PersistentOpenStruct)
+    o1 = pos_class.new(foo: :bar)
+
+    pos_class2 = Class.new(pos_class)
+    o2 = pos_class2.new(foo: :bar)
+
+    assert_equal(o1, o1.dup)
+    refute_equal(o1, o2)
+  end
+
   def test_inspect
     foo = PersistentOpenStruct.new
     assert_equal("#<PersistentOpenStruct>", foo.inspect)
@@ -109,10 +120,12 @@ class PersistentOpenStructTest < Minitest::Test
   def test_eql_and_hash
     os1 = PersistentOpenStruct.new age: 70
     os2 = PersistentOpenStruct.new age: 70.0
+    os3 = Class.new(PersistentOpenStruct).new age: 70
     assert_equal os1, os2
     assert_equal false, os1.eql?(os2)
     refute_equal os1.hash, os2.hash
-    assert_equal true, os1.eql?(os1.dup)
+    assert os1.eql?(os1.dup)
+    refute os1.eql?(os3)
     assert_equal os1.hash, os1.dup.hash
   end
 
